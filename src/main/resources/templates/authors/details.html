@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Author Details</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h1 th:text="|${author.name} ${author.surname}|">Author Name</h1>
+    <p><strong>Date of birth:</strong> <span th:text="${author.dateOfBirth}"></span></p>
+    <p><strong>Place of birth:</strong> <span th:text="${author.nationality}"></span></p>
+    <a href="/authors">Back to authors list</a>
+</body>
+</html>

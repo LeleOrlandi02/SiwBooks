@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Author</title>
+</head>
+<body>
+<h1>New Author</h1>
+<form th:action="@{/admin/authors}" th:object="${author}" method="post">
+    <label>Name: <input type="text" th:field="*{name}" /></label><br>
+    <label>Surname: <input type="text" th:field="*{surname}" /></label><br>
+    <label>Date of Birth: <input type="date" th:field="*{dateOfBirth}" /></label><br>
+    <label>Nationality: <input type="text" th:field="*{nationality}" /></label><br>
+    <button type="submit">Save</button>
+</form>
+<p th:if="${exists}">Author already exists!</p>
+</body>
+</html>
