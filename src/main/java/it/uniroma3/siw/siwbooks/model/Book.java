@@ -1,5 +1,7 @@
 package it.uniroma3.siw.siwbooks.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,8 +23,11 @@ public class Book {
 
     //private String description;
 
+    @Lob
+    private byte[] image;
+
     @NotNull
-    private Integer publicationDate;
+    private LocalDate publicationDate;
 
     // --- GETTERS & SETTERS ---
     public Long getId() {
@@ -57,11 +62,19 @@ public class Book {
         this.description = description;
     }*/
 
-    public Integer getPublicationDate() {
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Integer publicationDate) {
+    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
 }

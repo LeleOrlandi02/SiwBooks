@@ -4,8 +4,16 @@
     <title>Book Details</title>
 </head>
 <body>
+    
+    <p><strong>Image:</strong></p> 
+    <img th:if="${book.image != null}" 
+     th:src="@{'/books/' + ${book.id} + '/image'}" 
+     alt="Book Image" width="200" />
+
     <h1 th:text="${book.title}">Book Title</h1>
-    <p><strong>Year:</strong> <span th:text="${book.year}"></span></p>
+    
+    <p><strong>Year:</strong> <span th:text="${book.publicationDate}"></span></p>
+    
     <p>
         <strong>Author:</strong>
         <a th:href="@{'/authors/' + ${book.author.id}}" th:text="${book.author.name + ' ' + book.author.surname}"></a>

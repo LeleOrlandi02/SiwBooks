@@ -50,7 +50,8 @@ public class AuthorController {
                             @RequestParam("imageFile") MultipartFile imageFile) throws IOException{
         if (imageFile != null && !imageFile.isEmpty()) {
         author.setImage(imageFile.getBytes());
-    }
+        }
+        
         authorService.save(author);
         return "redirect:/authors";
     }

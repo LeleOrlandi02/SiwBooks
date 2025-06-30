@@ -9,8 +9,11 @@
 
     <ul>
         <li th:each="book : ${books}">
+            <img th:if="${book.image != null}" 
+                 th:src="@{'/books/' + ${book.id} + '/image'}" 
+                 alt="Book Image" width="100" style="vertical-align:middle; margin-right: 10px;" />
             <a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}"></a>
-            (<span th:text="${book.publicationDate}"></span>)
+            (<span th:text="${#temporals.format(book.publicationDate, 'yyyy')}"></span>)
         </li>
     </ul>
 

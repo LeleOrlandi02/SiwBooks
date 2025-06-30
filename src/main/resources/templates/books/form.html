@@ -6,14 +6,18 @@
 <body>
     <h1>Add a new Book</h1>
 
-    <form th:action="@{/admin/books}" th:object="${book}" method="post">
+    <form th:action="@{/books}" th:object="${book}" method="post" enctype="multipart/form-data">
         <label>Title: <input type="text" th:field="*{title}" /></label><br>
-        <label>Year: <input type="number" th:field="*{publicationDate}" /></label><br>
+        <label>Year: <input type="date" th:field="*{publicationDate}" /></label><br>
         <label>Author:
             <select th:field="*{author}">
                 <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name + ' ' + author.surname}"></option>
             </select>
-        </label><br>
+        </label>
+        
+        <label for="imageFile">Image (JPG):</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/jpeg" />
+        <br>
 
         <button type="submit">Save</button>
     </form>
