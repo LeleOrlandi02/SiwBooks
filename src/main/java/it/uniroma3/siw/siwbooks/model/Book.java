@@ -23,8 +23,8 @@ public class Book {
 
     //private String description;
 
-    @Lob
-    private byte[] image;
+   
+    private String imagePath;
 
     @NotNull
     private LocalDate publicationDate;
@@ -62,12 +62,12 @@ public class Book {
         this.description = description;
     }*/
 
-    public byte[] getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImagePath(String image) {
+        this.imagePath = image;
     }
     
     public LocalDate getPublicationDate() {

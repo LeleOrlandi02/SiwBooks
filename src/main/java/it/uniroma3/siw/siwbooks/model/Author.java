@@ -19,8 +19,8 @@ public class Author {
 
     private LocalDate dateOfBirth;
 
-    @Lob
-    private byte[] image;
+    
+    private String imagePath;
 
     // --- GETTERS & SETTERS ---
     
@@ -56,12 +56,12 @@ public class Author {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImagePath(String image) {
+        this.imagePath = image;
     }
     
 }

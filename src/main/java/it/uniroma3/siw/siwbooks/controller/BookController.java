@@ -1,11 +1,12 @@
 package it.uniroma3.siw.siwbooks.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,28 +52,33 @@ public class BookController {
 
     
     @PostMapping("/books")
-    public String saveBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model,
-                           @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
+    public String saveBook(@Valid @ModelAttribute Book book,
+                       BindingResult bindingResult,
+                       @RequestParam("imageFile") MultipartFile imageFile,
+                       Model model) throws IOException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("authors", authorService.findAll());
             return "books/form";
         }
 
+        // Gestione salvataggio immagine
         if (imageFile != null && !imageFile.isEmpty()) {
-            book.setImage(imageFile.getBytes());
+            String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+            String uploadDir = "src/main/resources/static/img/book/";
+            File uploadPath = new File(uploadDir);
+
+            if (!uploadPath.exists()) {
+                uploadPath.mkdirs();
+            }
+
+            Path filePath = Paths.get(uploadDir, fileName);
+            Files.write(filePath, imageFile.getBytes());
+
+            book.setImagePath("/img/book/" + fileName);
         }
-        
+
         bookService.save(book);
         return "redirect:/books";
-    }
+        }
 
-    @GetMapping("books/{id}/image")
-    public ResponseEntity<byte[]> getBookImage(@PathVariable Long id) {
-        return bookService.findById(id)
-            .filter(book -> book.getImage() != null)
-            .map(book -> ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
-                .body(book.getImage()))
-            .orElse(ResponseEntity.notFound().build());
-    }
 }

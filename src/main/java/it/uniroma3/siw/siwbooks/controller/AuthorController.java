@@ -1,9 +1,13 @@
 package it.uniroma3.siw.siwbooks.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+/*import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;*/
 
 
 import it.uniroma3.siw.siwbooks.model.Author;
@@ -49,14 +53,25 @@ public class AuthorController {
     public String saveAuthor(@ModelAttribute Author author,
                             @RequestParam("imageFile") MultipartFile imageFile) throws IOException{
         if (imageFile != null && !imageFile.isEmpty()) {
-        author.setImage(imageFile.getBytes());
+            String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+            String uploadDir = "src/main/resources/static/img/author/";
+            File uploadPath = new File(uploadDir);
+
+            if (!uploadPath.exists()) {
+                uploadPath.mkdirs();
+            }
+
+            Path filePath = Paths.get(uploadDir, fileName);
+            Files.write(filePath, imageFile.getBytes());
+
+            author.setImagePath("/img/author/" + fileName);
         }
-        
+
         authorService.save(author);
         return "redirect:/authors";
-    }
+        }
 
-    @GetMapping("/{id}/image")
+    /*@GetMapping("/{id}/image")
     public ResponseEntity<byte[]> getAuthorImage(@PathVariable Long id) {
         return authorService.findById(id)
             .filter(author -> author.getImage() != null)
@@ -64,5 +79,5 @@ public class AuthorController {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
                 .body(author.getImage()))
             .orElse(ResponseEntity.notFound().build());
-    }
+    }*/
 }
