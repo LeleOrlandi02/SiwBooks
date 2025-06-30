@@ -1,0 +1,77 @@
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('/img/libro.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Page title */
+h1 {
+    margin-top: 50px;
+    color: #2c3e50;
+    font-size: 2.5rem;
+}
+
+/* Book list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0;
+    width: 80%;
+    max-width: 600px;
+}
+
+li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease;
+}
+
+li:hover {
+    background-color: #f9f9f9;
+}
+
+/* Book link */
+li a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+li a:hover {
+    color: #388e3c;
+}
+
+/* Publication date */
+li span {
+    color: #777;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+/* Back button */
+a[href="/"] {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+a[href="/"]:hover {
+    background-color: #388e3c;
+}

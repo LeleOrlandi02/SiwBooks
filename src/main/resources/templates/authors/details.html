@@ -5,8 +5,16 @@
 </head>
 <body>
     <h1>Author Details</h1>
+    
+    <p><strong>Image:</strong></p> 
+    <img th:if="${author.image != null}" 
+     th:src="@{'/authors/' + ${author.id} + '/image'}" 
+     alt="Author Image" width="200" />
+
     <p><strong>Name:</strong> <span th:text="${author.name}"></span></p>
+    
     <p><strong>Surname:</strong> <span th:text="${author.surname}"></span></p>
+    
     <p><strong>Date of Birth:</strong> <span th:text="${author.dateOfBirth}"></span></p>
 
     <a th:href="@{/authors}">Back to Authors List</a>

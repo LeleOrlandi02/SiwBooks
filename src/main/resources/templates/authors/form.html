@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1 th:text="${author.id} != null ? 'Edit Author' : 'Add New Author'">Add/Edit Author</h1>
-    <form th:action="@{/authors}" th:object="${author}" method="post">
+    <form th:action="@{/authors}" th:object="${author}" method="post" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" th:field="*{name}" id="name" required />
         <br/>
@@ -18,6 +18,10 @@
         <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" />
         <br/>
 
+        <label for="imageFile">Image (JPG):</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/jpeg" />
+        <br/>
+        
         <button type="submit">Save</button>
     </form>
     <a th:href="@{/authors}">Back to Authors List</a>

@@ -4,7 +4,8 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+    background: url('/img/libreria.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +14,7 @@ body {
 /* Contenitore centrale */
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 40px 60px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -22,13 +23,13 @@ body {
 /* Titolo */
 h1 {
     font-size: 3rem;
-    color: #2c3e50;
+    color: #332207;
     margin-bottom: 30px;
 }
 
 /* Box verde contenente i bottoni */
 .button-box {
-    background-color: #4CAF50;
+    background-color: #332207;
     padding: 20px 30px;
     border-radius: 10px;
     display: flex;
@@ -50,4 +51,27 @@ h1 {
 .button-box a:hover {
     background-color: #388e3c;
     color: white;
+}
+/* Posiziona il bottone in basso centrato */
+.bottom-button {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Stile del bottone */
+.bottom-button a {
+    background-color: #ffffff;
+    color: #332207;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.bottom-button a:hover {
+    background-color: #332207;
+    color : #ffffff;
 }
