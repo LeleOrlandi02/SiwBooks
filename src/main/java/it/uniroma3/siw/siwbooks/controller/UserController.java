@@ -35,11 +35,9 @@ public class UserController {
             return "auth/register";
         }
 
-        if ("segretoadmin".equals(adminSecret)) {
-            user.setRole("ADMIN");
-        } else {
-            user.setRole("USER");
-        }
+        
+        user.setRole("USER");
+        
 
         userService.registerNewUser(user);
 

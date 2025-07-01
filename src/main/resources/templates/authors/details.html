@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
 <head>
     <title>Author Details</title>
 </head>
@@ -16,6 +17,10 @@
     <p><strong>Surname:</strong> <span th:text="${author.surname}"></span></p>
     
     <p><strong>Date of Birth:</strong> <span th:text="${author.dateOfBirth}"></span></p>
+
+    <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <a th:href="@{/authors/delete/{id}(id=${author.id})}">Delete Author</a>
+    </span>
 
     <a th:href="@{/authors}">Back to Authors List</a>
 </body>

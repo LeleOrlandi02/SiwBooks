@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,4 +81,12 @@ public class AuthorController {
                 .body(author.getImage()))
             .orElse(ResponseEntity.notFound().build());
     }*/
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id) {
+        authorService.deleteById(id);
+        return "redirect:/authors";
+    }
+
 }

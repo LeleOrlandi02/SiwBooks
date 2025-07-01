@@ -26,6 +26,7 @@ public class User {
     @NotBlank
     private String password;
 
+    @Column(nullable=false)
     private String role; // es: USER o ADMIN
 
     // Getters and Setters

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.siwbooks.model.Author;
 import it.uniroma3.siw.siwbooks.model.Book;
 import it.uniroma3.siw.siwbooks.service.AuthorService;
 import it.uniroma3.siw.siwbooks.service.BookService;
@@ -55,11 +57,19 @@ public class BookController {
     public String saveBook(@Valid @ModelAttribute Book book,
                        BindingResult bindingResult,
                        @RequestParam("imageFile") MultipartFile imageFile,
+                       @RequestParam("authorId") Long authorId,
                        Model model) throws IOException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("authors", authorService.findAll());
             return "books/form";
         }
+
+        // Recupera l'autore dall'ID e settalo al libro
+        Author author = authorService.findById(authorId)
+                                     .orElseThrow(() -> new RuntimeException("Author not found"));
+        book.setAuthor(author);
+
+        author.getBooks().add(book);
 
         // Gestione salvataggio immagine
         if (imageFile != null && !imageFile.isEmpty()) {
@@ -81,4 +91,10 @@ public class BookController {
         return "redirect:/books";
         }
 
+        @PreAuthorize("hasRole('ADMIN')")
+        @GetMapping("/books/delete/{id}")
+        public String deleteBook(@PathVariable Long id) {
+            bookService.deleteById(id);
+            return "redirect:/books";
+        }
 }

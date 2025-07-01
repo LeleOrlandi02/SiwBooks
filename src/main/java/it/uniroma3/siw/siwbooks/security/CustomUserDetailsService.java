@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
                 .password(user.getPassword())
-                .authorities("ROLE_" + user.getRole()) // Spring expects roles to be prefixed with "ROLE_"
+                .roles(user.getRole()) // Spring expects roles to be prefixed with "ROLE_"
                 .build();
     }
 }

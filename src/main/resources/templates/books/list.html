@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Books List</title>
     <link rel="stylesheet" th:href="@{/css/book.css}">
@@ -18,9 +19,13 @@
             
                 <a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}"></a>
                 <span th:text="${#temporals.format(book.publicationDate, 'yyyy-MM-dd')}"></span>
+            
+                <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <a th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a>
+                </span>
         </li>
     </ul>
-
+    
     <a href="/">Back to Home</a>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.siwbooks.model.Author;
 import it.uniroma3.siw.siwbooks.repository.AuthorRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class AuthorService {
@@ -31,7 +32,9 @@ public class AuthorService {
         return authorRepository.save(author);
     }
 
+   @Transactional
     public void deleteById(Long id) {
         authorRepository.deleteById(id);
-    }
+}
+
 }

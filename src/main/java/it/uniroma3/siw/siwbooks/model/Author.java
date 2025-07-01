@@ -3,6 +3,7 @@ package it.uniroma3.siw.siwbooks.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Author {
@@ -18,9 +19,11 @@ public class Author {
     private String surname;
 
     private LocalDate dateOfBirth;
-
     
     private String imagePath;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Book> books;
 
     // --- GETTERS & SETTERS ---
     
@@ -62,6 +65,14 @@ public class Author {
 
     public void setImagePath(String image) {
         this.imagePath = image;
+    }
+
+    public List<Book> getBooks(){
+        return books;
+    }
+
+    public void setBooks(List<Book> books){
+        this.books = books;
     }
     
 }
