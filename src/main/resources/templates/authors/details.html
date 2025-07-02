@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
-        <link rel="stylesheet" th:href="@{/css/author.css}">
-<head>
-    <title>Author Details</title>
-</head>
-<body>
-    <h1>Author Details</h1>
-    
-    <p><strong>Image:</strong></p> 
-    <img th:if="${author.imagePath != null}" 
-     th:src="@{${author.imagePath}}" 
-     alt="Author Image" width="200" />
+    <link rel="stylesheet" th:href="@{/css/author.css}">
+    <head>
+        <title>Author Details</title>
+    </head>
+    <body>
+        <h1>Author Details</h1>
+        <div class="author-box">
+            
+            <img th:if="${author.imagePath != null}" 
+            th:src="@{${author.imagePath}}" 
+            alt="Author Image" width="200" />
 
-    <p><strong>Name:</strong> <span th:text="${author.name}"></span></p>
-    
-    <p><strong>Surname:</strong> <span th:text="${author.surname}"></span></p>
-    
-    <p><strong>Date of Birth:</strong> <span th:text="${author.dateOfBirth}"></span></p>
+            <p><strong>Name:</strong> <span th:text="${author.name}"></span></p>
+        
+            <p><strong>Surname:</strong> <span th:text="${author.surname}"></span></p>
+        
+            <p><strong>Date of Birth:</strong> <span th:text="${author.dateOfBirth}"></span></p>
 
-    <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-                    <a th:href="@{/authors/delete/{id}(id=${author.id})}">Delete Author</a>
-    </span>
+        </div>
+        <div class="button-container">
+            <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                <a th:href="@{/authors/delete/{id}(id=${author.id})}">Delete Author</a>
+            </span>
 
-    <a th:href="@{/authors}">Back to Authors List</a>
-</body>
+            <a th:href="@{/authors}">Back to Authors List</a>
+        </div>
+    </body>
 </html>

@@ -3,20 +3,34 @@ body {
     font-family: Arial, sans-serif;
     background: url('/img/Autore.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #333;
+    color: #ffffff;
     margin: 0;
     padding: 40px;
 }
 
+.author-box {
+    background-color: rgba(255, 255, 255, 0.35);
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 20px 30px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
 /* Titolo principale */
 h1 {
-    color: #2c3e50;
+    text-align: center;
+    color: #ffffff;
     font-size: 2em;
     margin-bottom: 30px;
 }
 
 /* Immagine autore */
 img {
+    display: block;
+    margin: auto;
+    width: 40%;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     margin-bottom: 20px;
@@ -24,12 +38,13 @@ img {
 
 /* Etichette e valori */
 p {
+    text-align: center;
     font-size: 1.1em;
     margin: 10px 0;
 }
 
 strong {
-    color: #555;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -43,6 +58,13 @@ a {
     padding: 10px 18px;
     border-radius: 5px;
     transition: background-color 0.3s;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* spazio tra i pulsanti */
+    margin-top: 30px;
 }
 
 a:hover {

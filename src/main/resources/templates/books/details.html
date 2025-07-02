@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Book Details</title>
-</head>
-<body>
-    
-    <p><strong>Image:</strong></p> 
-    <img th:if="${book.imagePath != null}" 
-     th:src="@{${book.imagePath}}" 
-     alt="Book Image" width="200" />
+    <link rel="stylesheet" th:href="@{/css/book.css}">
+    <head>
+        <title>Book Details</title>
+    </head>
+    <body>
+        <h1>Book Details</h1>
+        <div class ="book-box">
 
-    <h1 th:text="${book.title}">Book Title</h1>
-    
-    <p><strong>Year:</strong> <span th:text="${book.publicationDate}"></span></p>
-    
-    <p>
-        <strong>Author:</strong>
-        <a th:href="@{'/authors/' + ${book.author.id}}" th:text="${book.author.name + ' ' + book.author.surname}"></a>
-    </p>
+        <img th:if="${book.imagePath != null}" 
+        th:src="@{${book.imagePath}}" 
+        alt="Book Image" width="200" />
 
-    <a href="/books">Back to Book List</a>
-</body>
+        <p><strong>Title:</strong> <span th:text="${book.title}"></span></p>
+        
+        <p><strong>Year : </strong> <span th:text="${book.publicationDate}"></span></p>
+        
+        <p>
+            <strong>Author : </strong>
+            <a th:href="@{'/authors/' + ${book.author.id}}" th:text="${book.author.name + ' ' + book.author.surname}"></a>
+        </p>
+
+        </div>
+        <div class="button-container">
+             <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                <a th:href="@{/books/delete/{id}(id=${book.id})}">Delete Book</a>
+            </span>
+            <a href="/books">Back to Book List</a>
+        </div>
+    </body>
 </html>

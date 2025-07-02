@@ -1,77 +1,82 @@
-/* Global styles */
+/* Imposta font e sfondo */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('/img/libro.jpg') no-repeat center center fixed;
+    font-family: Arial, sans-serif;
+    background: url('/img/Libro.jpg') no-repeat center center fixed;
     background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: #ffffff;
+    margin: 0;
+    padding: 40px;
 }
 
-/* Page title */
-h1 {
-    margin-top: 50px;
-    color: #2c3e50;
-    font-size: 2.5rem;
-}
-
-/* Book list */
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 40px 0;
-    width: 80%;
+.book-box {
+    background-color: rgba(255, 255, 255, 0.35);
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 20px 30px;
     max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-li {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 15px 20px;
+/* Titolo principale */
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* Immagine libro */
+img {
+    display: block;
+    margin: auto;
+    width: 30%;
     border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: background-color 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
-li:hover {
-    background-color: #f9f9f9;
+/* Etichette e valori */
+p {
+    text-align: center;
+    font-size: 1.1em;
+    margin: 10px 0;
 }
 
-/* Book link */
-li a {
-    text-decoration: none;
-    color: #4CAF50;
+strong {
+    color: #ffffff;
     font-weight: bold;
 }
 
-li a:hover {
-    color: #388e3c;
-}
-
-/* Publication date */
-li span {
-    color: #777;
-    font-style: italic;
-    margin-left: 10px;
-}
-
-/* Back button */
-a[href="/"] {
+/* Pulsante e link */
+a {
     display: inline-block;
-    margin-bottom: 40px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    margin-top: 20px;
     text-decoration: none;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 18px;
     border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-a[href="/"]:hover {
-    background-color: #388e3c;
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* spazio tra i pulsanti */
+    margin-top: 30px;
 }
+
+a:hover {
+    background-color: #2980b9;
+}
+
+/* Link delete */
+a[href*="delete"] {
+    background-color: #e74c3c;
+}
+
+a[href*="delete"]:hover {
+    background-color: #c0392b;
+}
+
