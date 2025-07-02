@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 @Entity
-public class Rewiew {
+public class Review {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
