@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reviews</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h1>Reviews for "<span th:text="${book.title}">Book Title</span>"</h1>
+
+    <div th:if="${reviews.isEmpty()}">
+        <p>No reviews yet.</p>
+    </div>
+
+    <ul th:if="${!reviews.isEmpty()}">
+        <li th:each="review : ${reviews}">
+            <p><strong>Author:</strong> <span th:text="${review.author.name}">Author</span></p>
+            <p><strong>Posted on:</strong> <span th:text="${#temporals.format(review.createdAt, 'dd/MM/yyyy HH:mm')}">Date</span></p>
+            <p><strong>Content:</strong> <span th:text="${review.content}">Review content</span></p>
+            <div th:if="${#authentication.name == review.author.email}">
+                <!--<a th:href="@{/reviews/edit/{id}(id=${review.id})}">Edit</a>-->
+                <a th:href="@{/reviews/delete/{id}(id=${review.id})}">Delete</a>
+            </div>
+            <hr/>
+        </li>
+    </ul>
+
+    <a th:href="@{/reviews/new(bookId=${book.id})}">Add New Review</a><br/>
+    <a th:href="@{/books/{id}(id=${book.id})}">Back to Book Details</a>
+</body>
+</html>

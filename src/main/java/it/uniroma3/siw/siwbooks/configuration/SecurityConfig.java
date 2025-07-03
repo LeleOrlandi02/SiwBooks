@@ -25,15 +25,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/register", "/books", "/authors", "/css/**", "/img/**").permitAll()
+                .requestMatchers("/", "/home", "/login", "/register", "/books", "/authors", "/css/**", "/img/**").permitAll()
                 .requestMatchers("/books/delete/**", "/authors/delete/**").hasRole("ADMIN")
                 .requestMatchers("/books/form", "/authors/form").hasAnyRole("ADMIN", "USER")
-                .requestMatchers("books/**", "authors/**").authenticated()
+                //.requestMatchers("books/**", "authors/**").authenticated()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/books", true)
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
             )
             .logout(logout -> logout

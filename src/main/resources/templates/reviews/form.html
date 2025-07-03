@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Write a Review</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <!--<h1 th:text="${#strings.isEmpty(review.id) ? 'New Review' : 'Edit Review'}"></h1>-->
+
+    <form th:action="@{/reviews/save}" th:object="${review}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{book}" />
+        <textarea th:field="*{content}" rows="5" cols="60" placeholder="Write your review here..." required></textarea><br/>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a th:href="@{/books/{id}(id=${review.book.id})}">Cancel</a>
+</body>
+</html>

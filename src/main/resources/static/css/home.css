@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif; /* Un font leggibile */
+    display: flex; /* Usa flexbox per centrare il contenuto */
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Fa sì che il body occupi l'intera altezza della viewport */
+    margin: 0; /* Rimuove i margini predefiniti del body */
+    background: url('/img/mainpage.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+a {
+    display: inline-block; /* Permette di applicare padding e margin */
+    padding: 10px 20px; /* Spaziatura interna */
+    margin: 0 10px; /* Spaziatura tra i link */
+    text-decoration: none; /* Rimuove la sottolineatura predefinita */
+    color: #fff; /* Colore del testo bianco */
+    background-color: #007bff; /* Un bel blu per lo sfondo del bottone */
+    border-radius: 5px; /* Bordi leggermente arrotondati */
+    transition: background-color 0.3s ease; /* Transizione fluida per l'hover */
+}
+
+a:hover {
+    background-color: #0056b3; /* Blu più scuro all'hover */
+    transform: translateY(-2px); /* Un leggero effetto di sollevamento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra per profondità */
+}

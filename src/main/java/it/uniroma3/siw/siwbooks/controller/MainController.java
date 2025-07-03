@@ -12,4 +12,8 @@ public class MainController {
         return "index";
     }
     
+    @GetMapping("/home")
+    public String showHome() {
+        return "home";
+    }
 }
